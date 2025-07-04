@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabiduria Artificial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #4e0070, #9b4dff);
+      width: 100vw;
+      height: 33vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header img {
+      height: auto;
+      width: 50%;
+      object-fit: contain;
+    }
+    nav {
+      background-color: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #4e0070;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .section {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .section h2 {
+      margin-bottom: 1rem;
+      color: #4e0070;
+    }
+    .section p {
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #4e0070;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .form-group {
+      margin: 1rem 0;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .form-group button {
+      background: #6c2dc7;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    .social a {
+      margin: 0 0.5rem;
+      color: #bb86fc;
+      text-decoration: none;
+    }
+    #counter {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let visitCount = localStorage.getItem('visitCount') || 0;
+      visitCount++;
+      localStorage.setItem('visitCount', visitCount);
+      document.getElementById('counter').textContent = 'Visitas: ' + visitCount;
+
+      const sections = document.querySelectorAll('.section');
+      const navLinks = document.querySelectorAll('nav ul li a');
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('data-target');
+          sections.forEach((sec) => sec.classList.remove('active'));
+          document.getElementById(targetId).classList.add('active');
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo Sabiduria Artificial">
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#" data-target="mision">Mision</a></li>
+      <li><a href="#" data-target="vision">Vision</a></li>
+      <li><a href="#" data-target="valores">Valores</a></li>
+      <li><a href="#" data-target="video">Video</a></li>
+      <li><a href="#" data-target="comentarios">Comentarios</a></li>
+      <li><a href="#" data-target="contacto">Contacto</a></li>
+      <li><a href="#" data-target="cursos">Cursos</a></li>
+    </ul>
+  </nav>
+  <section id="mision" class="section active">
+    <h2>Mision</h2>
+    <p>Impulsar la transformacion personal a traves de contenidos que despierten la conciencia, el poder interior y el potencial humano.</p>
+  </section>
+  <section id="vision" class="section">
+    <h2>Vision</h2>
+    <p>Ser la plataforma de referencia en contenido motivacional automatizado, impactando positivamente millones de vidas en todo el mundo.</p>
+  </section>
+  <section id="valores" class="section">
+    <h2>Valores</h2>
+    <p>Autenticidad, Transformacion, Empatia, Impacto positivo, Innovacion consciente.</p>
+  </section>
+  <section id="video" class="section">
+    <h2>Video Destacado</h2>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:6px;">
+      <iframe
+        src="https://www.youtube.com/embed/tQTubPaGSfI"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+      </iframe>
+    </div>
+  </section>
+  <section id="comentarios" class="section">
+    <h2>Comentarios</h2>
+    <form>
+      <div class="form-group">
+        <input type="text" placeholder="Nombre" required>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Asunto" required>
+      </div>
+      <div class="form-group">
+        <textarea rows="4" placeholder="Escribe tu comentario aqui..." required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Enviar Comentario</button>
+      </div>
+    </form>
+  </section>
+  <section id="contacto" class="section">
+    <h2>Contacto</h2>
+    <form>
+      <div class="form-group">
+        <input type="text" placeholder="Nombre" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Telefono" required>
+      </div>
+      <div class="form-group">
+        <textarea rows="4" placeholder="Mensaje"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Enviar Mensaje</button>
+      </div>
+    </form>
+  </section>
+  <section id="cursos" class="section">
+    <h2>Cursos</h2>
+    <ul>
+      <li><a href="/cursos/curso1.pdf" download>Curso de Desarrollo Personal</a></li>
+      <li><a href="/cursos/curso2.pdf" download>Curso de Inteligencia Emocional</a></li>
+      <li><a href="/cursos/curso3.pdf" download>Curso de Emprendimiento y Accion</a></li>
+    </ul>
+  </section>
+  <footer>
+    <div class="social">
+      <a href="https://www.instagram.com/sabiduriaartificial0" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@sabiduria.artific" target="_blank">TikTok</a>
+      <a href="https://www.youtube.com/@sabiduria.artificial0" target="_blank">YouTube</a>
+      <a href="https://x.com/sabiduriaartifi" target="_blank">X</a>
+      <a href="https://www.facebook.com/profile.php?id=61577719172978" target="_blank">Facebook</a>
+    </div>
+    <p>&copy; 2025 Sabiduria Artificial. Todos los derechos reservados.<br>Contacto: <a href="mailto:sabiduriaartificial0@gmail.com">sabiduriaartificial0@gmail.com</a></p>
+  </footer>
+  <div id="counter"></div>
+</body>
+</html>
